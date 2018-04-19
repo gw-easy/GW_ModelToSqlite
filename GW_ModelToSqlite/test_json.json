@@ -1,0 +1,87 @@
+{
+    "address": [{
+                "item": {
+                "country": "中国",
+                "locality": "深圳市",
+                "postal_code": "518000",
+                "street": "龙华新区民治大道佐昑香颂购物中心15楼 B 入ロ",
+                "setModel":{
+                "model1Str":"222",
+                "baseModel_Int":56,
+                "baseMM_float":78.0,
+                "baseM":"999"
+                },
+                "type": ["work"]
+                },
+                "position": "143,165,623,164,623,242,143,249"
+                }],
+    "email": [{
+              "item": "henxl@crbank.com.cn",
+              "position": "236,169,426,165,425,189,235,192"
+              }],
+    "label": [{
+              "item": {
+              "address": "深圳市龙华新区民治大道佐昑香颂购物中心12楼 B 入ロ, 518000",
+              "type": ["work"]
+              },
+              "position": "143,165,623,164,623,242,143,249"
+              }],
+    "name": [{
+             "item": {
+             "family_name": "陈",
+             "given_name": "一"
+             },
+             "position": "0,0,0,0,0,0,0,0"
+             }],
+    "organization": [{
+                     "item": {
+                     "unit": "深圳民治社区支行"
+                     },
+                     "position": "148,417,296,414,295,435,147,437"
+                     }, {
+                     "item": {
+                     "name": "华润集团公司"
+                     },
+                     "position": "659,111,776,110,775,124,658,126"
+                     }, {
+                     "item": {
+                     "name": "懒晖憫銀行"
+                     },
+                     "position": "463,401,777,395,775,461,462,467"
+                     }],
+    "rotation_angle": "0",
+    "telephone": [{
+                  "item": {
+                  "number": "+815185715747168",
+                  "type": ["cellular", "voice"]
+                  },
+                  "position": "193,203,354,200,354,218,193,221"
+                  }, {
+                  "item": {
+                  "number": "+8675523763180",
+                  "type": ["work", "voice"]
+                  },
+                  "position": "451,194,644,191,644,213,451,216"
+                  }, {
+                  "item": {
+                  "number": "23763181",
+                  "type": ["work", "voice"]
+                  },
+                  "position": "661,191,755,189,755,210,661,212"
+                  }],
+    "title": [{
+              "item": "助理",
+              "position": "147,396,220,395,219,414,146,416"
+              }],
+    "url": [{
+            "item": "www.crtrank.com.cn",
+            "position": "142,140,310,137,310,158,141,161"
+            }],
+    "setModel":{
+        "model1Str":"222",
+        "baseModel_Int":56,
+        "baseMM_float":78.0,
+        "baseM":"999"
+    }
+    
+}
