@@ -21,12 +21,12 @@
 
 #define SingalSema GW_Sqlite->singal_sema
 
-static NSString *version_Code = @"1.0";
-static NSString *saveKey = @"GW_ModelToSqlite_SaveKey";
-static NSString *selfID = @"GWID";
-static NSString *MAIN_KEY = @"_id";
-static NSString *beginSql = @"BEGIN TRANSACTION";
-static NSString *commitSql = @"COMMIT";
+static NSString *const version_Code = @"1.0";
+static NSString *const saveKey = @"GW_ModelToSqlite_SaveKey";
+static NSString *const selfID = @"GWID";
+static NSString *const MAIN_KEY = @"_id";
+static NSString *const beginSql = @"BEGIN TRANSACTION";
+static NSString *const commitSql = @"COMMIT";
 //数据库
 static sqlite3 *GW_SqliteBase;
 
@@ -855,6 +855,9 @@ static GW_ModelToSqlite *base = nil;
             version = GW_Sqlite.version;
         }
         NSString *localFileName = [self getLocalModelPath:sClass isPath:NO];
+        if ([self isNullStr:localFileName]) {
+            return;
+        }
         [self updateTableField:sClass newVersion:version localModelName:localFileName];
     }
 }

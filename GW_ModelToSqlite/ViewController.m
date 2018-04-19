@@ -41,14 +41,14 @@
 
     
     
-    [GW_ModelToSqlite delete_class:[Model1 class] where:@"model1_int = 1"];
-    
-    NSArray *arr2 = [GW_ModelToSqlite query:[Model1 class]];
-    for (Model1 *tb in arr2) {
-        NSLog(@"tb==%@",[tb GW_ModelToDictionary:tb]);
-    }
-//    [GW_ModelToSqlite removeAllTable];
-//    [self test1];
+//    [GW_ModelToSqlite delete_class:[Model1 class] where:@"model1_int = 1"];
+//
+//    NSArray *arr2 = [GW_ModelToSqlite query:[Model1 class]];
+//    for (Model1 *tb in arr2) {
+//        NSLog(@"tb==%@",[tb GW_ModelToDictionary:tb]);
+//    }
+    [GW_ModelToSqlite removeAllTable];
+    [self test1];
 
     
 }
