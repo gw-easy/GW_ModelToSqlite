@@ -90,6 +90,7 @@ typedef NS_ENUM(NSInteger,GW_QueryType) {
 }
 @property (assign, nonatomic) BOOL update;
 @property (strong, nonatomic) NSDictionary *propertyDic;
+@property (strong, nonatomic) NSCache *propertyCache;
 @end
 @implementation GW_ModelToSqlite
 
@@ -123,8 +124,17 @@ static GW_ModelToSqlite *base = nil;
         self.version = @"1.0";
         self.sqliteMainKey = MAIN_KEY;
         self.update = YES;
+        self.propertyCache = [[NSCache alloc] init];
+        //因为缓存的数据量不大，所以通知可有可无
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(memoryWarning) name:@"UIApplicationDidReceiveMemoryWarningNotification" object:nil];
     }
     return self;
+}
+
+//清理缓存
+- (void)memoryWarning{
+    [self.propertyCache removeAllObjects];
+    [GW_ModelToSqlite clearPropertyDicData];
 }
 
 + (NSString *)dataCachePath:(Class)sClass{
@@ -850,6 +860,10 @@ static GW_ModelToSqlite *base = nil;
 
 + (void)updateTableColumn:(Class)sClass{
     if (sClass) {
+        if ([GW_Sqlite.propertyCache objectForKey:NSStringFromClass(sClass)]) {
+//            如果有就代表更新过
+            return;
+        }
         NSString *version = version_Code;
         if (![self isNullStr:GW_Sqlite.version]) {
             version = GW_Sqlite.version;
@@ -866,6 +880,7 @@ static GW_ModelToSqlite *base = nil;
                        newVersion:(NSString *)newVersion
                    localModelName:(NSString *)local_model_name{
 
+    
     NSString * table_name = [self getTableName:sClass];
     NSString * cache_directory = [self dataCachePath:sClass];
     NSString * database_cache_path = [NSString stringWithFormat:@"%@%@",cache_directory,local_model_name];
@@ -873,6 +888,8 @@ static GW_ModelToSqlite *base = nil;
         [self decryptionSqlite];
         NSArray * old_model_field_name_array = [self getModelFieldNameWithClass:sClass];
         NSDictionary * new_model_info = [self getPropertyDicDataClass:sClass];
+        //记录一下已经更新过哪个类
+        [GW_Sqlite.propertyCache setObject:NSStringFromClass(sClass) forKey:NSStringFromClass(sClass)];
         NSMutableString * delete_field_names = [NSMutableString string];
         NSMutableString * add_field_names = [NSMutableString string];
         [old_model_field_name_array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -1764,5 +1781,9 @@ static GW_ModelToSqlite *base = nil;
     if (GW_Sqlite.propertyDic && GW_Sqlite.propertyDic.count >0) {
         GW_Sqlite.propertyDic = nil;
     }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -47,7 +47,9 @@
 //    for (Model1 *tb in arr2) {
 //        NSLog(@"tb==%@",[tb GW_ModelToDictionary:tb]);
 //    }
+//    清理数据
     [GW_ModelToSqlite removeAllTable];
+    
     [self test1];
 
     
