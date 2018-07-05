@@ -19,7 +19,7 @@
 #import <sqlite3.h>
 #endif
 
-#define SingalSema GW_Sqlite->singal_sema
+#define SingalSema GW_Sqlite->_singal_sema
 
 static NSString *const version_Code = @"1.0";
 static NSString *const saveKey = @"GW_ModelToSqlite_SaveKey";
@@ -86,10 +86,11 @@ typedef NS_ENUM(NSInteger,GW_QueryType) {
 @end
 
 @interface GW_ModelToSqlite(){
-    dispatch_semaphore_t singal_sema;
+    dispatch_semaphore_t _singal_sema;
 }
 @property (assign, nonatomic) BOOL update;
 @property (strong, nonatomic) NSDictionary *propertyDic;
+@property (strong, nonatomic) NSCache *classPropertyCache;
 @property (strong, nonatomic) NSCache *propertyCache;
 @end
 @implementation GW_ModelToSqlite
@@ -119,21 +120,27 @@ static GW_ModelToSqlite *base = nil;
 
 - (instancetype)init{
     if (self = [super init]) {
-        singal_sema = dispatch_semaphore_create(1);
+        _singal_sema = dispatch_semaphore_create(1);
         self.propertyDic = nil;
         self.version = @"1.0";
         self.sqliteMainKey = MAIN_KEY;
         self.update = YES;
+        self.classPropertyCache = [[NSCache alloc] init];
         self.propertyCache = [[NSCache alloc] init];
-        //因为缓存的数据量不大，所以通知可有可无
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(memoryWarning) name:@"UIApplicationDidReceiveMemoryWarningNotification" object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(memoryWarning) name:@"UIApplicationDidReceiveMemoryWarningNotification" object:nil];
     }
     return self;
 }
 
 //清理缓存
 - (void)memoryWarning{
+    [self clearAllCache];
+}
+
+- (void)clearAllCache{
     [self.propertyCache removeAllObjects];
+    [self.classPropertyCache removeAllObjects];
     [GW_ModelToSqlite clearPropertyDicData];
 }
 
@@ -1666,8 +1673,8 @@ static GW_ModelToSqlite *base = nil;
 
 //设置密码
 + (BOOL)setPassKey:(NSString *)key{
-    NSData *keyData = [NSData dataWithBytes:[key UTF8String] length:(NSUInteger)strlen([key UTF8String])];
 #ifdef SQLITE_HAS_CODEC
+    NSData *keyData = [NSData dataWithBytes:[key UTF8String] length:(NSUInteger)strlen([key UTF8String])];
     if (!keyData) {
         return NO;
     }
@@ -1680,8 +1687,8 @@ static GW_ModelToSqlite *base = nil;
 
 //重置密码
 + (BOOL)resetPassKey:(NSString *)key{
-    NSData *keyData = [NSData dataWithBytes:[key UTF8String] length:(NSUInteger)strlen([key UTF8String])];
 #ifdef SQLITE_HAS_CODEC
+    NSData *keyData = [NSData dataWithBytes:[key UTF8String] length:(NSUInteger)strlen([key UTF8String])];
     if (!keyData) {
         return NO;
     }
@@ -1770,8 +1777,12 @@ static GW_ModelToSqlite *base = nil;
 }
 
 + (NSDictionary *)getPropertyDicDataClass:(Class)class{
+    GW_Sqlite.propertyDic = [GW_Sqlite.classPropertyCache objectForKey:NSStringFromClass(class)];
     if (!GW_Sqlite.propertyDic || GW_Sqlite.propertyDic.count==0) {
         GW_Sqlite.propertyDic = [self parserSubModelObjectAttributesAndName:class propertyName:nil complete:nil];
+        if (GW_Sqlite.propertyDic) {
+            [GW_Sqlite.classPropertyCache setObject:GW_Sqlite.propertyDic forKey:NSStringFromClass(class)];
+        }
     }
     return GW_Sqlite.propertyDic;
 }
@@ -1785,5 +1796,6 @@ static GW_ModelToSqlite *base = nil;
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self clearAllCache];
 }
 @end

@@ -99,7 +99,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 
 #pragma mark 模型数据序列化
 //归档
-- (void)GW_Encode:(NSCoder *)encode rootObj:(__kindof NSObject *)rootObj{
+- (void)GW_Encode:(NSCoder *)encode rootObj:(__weak __kindof NSObject *)rootObj{
     Class superClass = class_getSuperclass(self.class);
     if (superClass && superClass != [NSObject class]) {
         __kindof NSObject *superObject = superClass.new;
@@ -118,7 +118,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 }
 
 //解档
-- (void)GW_Decode:(NSCoder *)decode rootObj:(__kindof NSObject *)rootObj{
+- (void)GW_Decode:(NSCoder *)decode rootObj:(__weak __kindof NSObject *)rootObj{
     Class superClass = class_getSuperclass(self.class);
     if (superClass && superClass != [NSObject class]) {
         __kindof NSObject *superObject = superClass.new;
@@ -135,7 +135,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 }
 
 //复制
-- (id)GW_Copy:(__kindof NSObject *)rootObj{
+- (id)GW_Copy:(__weak __kindof NSObject *)rootObj{
     id copySelf = self.class.new;
     
     [self.class GW_EnumeratePropertyNameBlock:^(NSString *propertyName, objc_property_t property, NSInteger index, BOOL *stop) {
@@ -150,7 +150,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
     return copySelf;
 }
 
-- (void)copySuperObject:(id)copySelf rootObj:(__kindof NSObject *)rootObj{
+- (void)copySuperObject:(id)copySelf rootObj:(__weak __kindof NSObject *)rootObj{
     Class superClass = class_getSuperclass(self.class);
     if (superClass && superClass != [NSObject class]) {
         NSObject *superObject = superClass.new;

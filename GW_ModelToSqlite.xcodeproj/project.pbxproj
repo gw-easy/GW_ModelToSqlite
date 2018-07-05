@@ -15,8 +15,8 @@
 		C405BFE9207B0CF300057223 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C405BFE8207B0CF300057223 /* main.m */; };
 		C405BFF3207B0CF300057223 /* GW_ModelToSqliteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C405BFF2207B0CF300057223 /* GW_ModelToSqliteTests.m */; };
 		C405BFFE207B0CF300057223 /* GW_ModelToSqliteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C405BFFD207B0CF300057223 /* GW_ModelToSqliteUITests.m */; };
-		C405C00E207B0D6F00057223 /* GW_ModelToSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = C405C00D207B0D6F00057223 /* GW_ModelToSqlite.m */; };
-		C4E7B3F32085CAC400AC6FF2 /* NSObject+GW_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E7B3F22085CAC300AC6FF2 /* NSObject+GW_Model.m */; };
+		C46CB45C20ECC7A000E6143B /* NSObject+GW_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = C46CB45820ECC7A000E6143B /* NSObject+GW_Model.m */; };
+		C46CB45D20ECC7A000E6143B /* GW_ModelToSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = C46CB45B20ECC7A000E6143B /* GW_ModelToSqlite.m */; };
 		C4E7B4092085CAFE00AC6FF2 /* test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = C4E7B3FD2085CAFC00AC6FF2 /* test_json.json */; };
 		C4E7B40F2085CAFE00AC6FF2 /* ModelObject.json in Resources */ = {isa = PBXBuildFile; fileRef = C4E7B4082085CAFE00AC6FF2 /* ModelObject.json */; };
 		C4EAEF4B207C8B770076301F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C4EAEF4A207C8B770076301F /* libsqlite3.0.tbd */; };
@@ -67,10 +67,10 @@
 		C405BFF9207B0CF300057223 /* GW_ModelToSqliteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GW_ModelToSqliteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C405BFFD207B0CF300057223 /* GW_ModelToSqliteUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GW_ModelToSqliteUITests.m; sourceTree = "<group>"; };
 		C405BFFF207B0CF300057223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C405C00C207B0D6F00057223 /* GW_ModelToSqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GW_ModelToSqlite.h; sourceTree = "<group>"; };
-		C405C00D207B0D6F00057223 /* GW_ModelToSqlite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GW_ModelToSqlite.m; sourceTree = "<group>"; };
-		C4E7B3F12085CAC300AC6FF2 /* NSObject+GW_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GW_Model.h"; sourceTree = "<group>"; };
-		C4E7B3F22085CAC300AC6FF2 /* NSObject+GW_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GW_Model.m"; sourceTree = "<group>"; };
+		C46CB45720ECC7A000E6143B /* NSObject+GW_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GW_Model.h"; sourceTree = "<group>"; };
+		C46CB45820ECC7A000E6143B /* NSObject+GW_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GW_Model.m"; sourceTree = "<group>"; };
+		C46CB45A20ECC7A000E6143B /* GW_ModelToSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GW_ModelToSqlite.h; sourceTree = "<group>"; };
+		C46CB45B20ECC7A000E6143B /* GW_ModelToSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GW_ModelToSqlite.m; sourceTree = "<group>"; };
 		C4E7B3FD2085CAFC00AC6FF2 /* test_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_json.json; sourceTree = "<group>"; };
 		C4E7B4082085CAFE00AC6FF2 /* ModelObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ModelObject.json; sourceTree = "<group>"; };
 		C4EAEF4A207C8B770076301F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -154,9 +154,8 @@
 		C405BFD8207B0CF300057223 /* GW_ModelToSqlite */ = {
 			isa = PBXGroup;
 			children = (
+				C46CB45520ECC7A000E6143B /* GW_ModelToSqlite */,
 				C4F965FD2086EC280022DFC1 /* Model */,
-				C4E7B3F02085CAC300AC6FF2 /* GW_ModelKit */,
-				C405C00B207B0D4E00057223 /* GW_ModelToSqliteTools */,
 				C405BFD9207B0CF300057223 /* AppDelegate.h */,
 				C405BFDA207B0CF300057223 /* AppDelegate.m */,
 				C405BFDC207B0CF300057223 /* ViewController.h */,
@@ -190,15 +189,6 @@
 			path = GW_ModelToSqliteUITests;
 			sourceTree = "<group>";
 		};
-		C405C00B207B0D4E00057223 /* GW_ModelToSqliteTools */ = {
-			isa = PBXGroup;
-			children = (
-				C405C00C207B0D6F00057223 /* GW_ModelToSqlite.h */,
-				C405C00D207B0D6F00057223 /* GW_ModelToSqlite.m */,
-			);
-			path = GW_ModelToSqliteTools;
-			sourceTree = "<group>";
-		};
 		C405C024207B5E5200057223 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,13 +198,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C4E7B3F02085CAC300AC6FF2 /* GW_ModelKit */ = {
+		C46CB45520ECC7A000E6143B /* GW_ModelToSqlite */ = {
 			isa = PBXGroup;
 			children = (
-				C4E7B3F12085CAC300AC6FF2 /* NSObject+GW_Model.h */,
-				C4E7B3F22085CAC300AC6FF2 /* NSObject+GW_Model.m */,
+				C46CB45620ECC7A000E6143B /* GW_ModelKit */,
+				C46CB45920ECC7A000E6143B /* GW_ModelToSqliteTools */,
+			);
+			path = GW_ModelToSqlite;
+			sourceTree = "<group>";
+		};
+		C46CB45620ECC7A000E6143B /* GW_ModelKit */ = {
+			isa = PBXGroup;
+			children = (
+				C46CB45720ECC7A000E6143B /* NSObject+GW_Model.h */,
+				C46CB45820ECC7A000E6143B /* NSObject+GW_Model.m */,
 			);
 			path = GW_ModelKit;
+			sourceTree = "<group>";
+		};
+		C46CB45920ECC7A000E6143B /* GW_ModelToSqliteTools */ = {
+			isa = PBXGroup;
+			children = (
+				C46CB45A20ECC7A000E6143B /* GW_ModelToSqlite.h */,
+				C46CB45B20ECC7A000E6143B /* GW_ModelToSqlite.m */,
+			);
+			path = GW_ModelToSqliteTools;
 			sourceTree = "<group>";
 		};
 		C4F965FD2086EC280022DFC1 /* Model */ = {
@@ -400,12 +408,12 @@
 				C4F966152086EC280022DFC1 /* TestModel.m in Sources */,
 				C4F9660E2086EC280022DFC1 /* BaseM.m in Sources */,
 				C4F966112086EC280022DFC1 /* Model1.m in Sources */,
+				C46CB45C20ECC7A000E6143B /* NSObject+GW_Model.m in Sources */,
 				C4F966142086EC280022DFC1 /* Test_Model2.m in Sources */,
 				C4F966132086EC280022DFC1 /* Model3.m in Sources */,
-				C405C00E207B0D6F00057223 /* GW_ModelToSqlite.m in Sources */,
 				C4F966102086EC280022DFC1 /* BaseModel.m in Sources */,
+				C46CB45D20ECC7A000E6143B /* GW_ModelToSqlite.m in Sources */,
 				C4F966122086EC280022DFC1 /* Model2.m in Sources */,
-				C4E7B3F32085CAC400AC6FF2 /* NSObject+GW_Model.m in Sources */,
 				C4F9660F2086EC280022DFC1 /* baseMM.m in Sources */,
 				C405BFDE207B0CF300057223 /* ViewController.m in Sources */,
 				C405BFE9207B0CF300057223 /* main.m in Sources */,
