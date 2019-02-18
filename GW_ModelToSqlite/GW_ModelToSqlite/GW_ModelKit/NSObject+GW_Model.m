@@ -482,7 +482,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             [objDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 if ([obj isKindOfClass:[NSDictionary class]] || [objDic isKindOfClass:[NSArray class]]) {
                     Class subModelClass = NSClassFromString(key);
-                    subModelClass = [self GW_HasExistClass:key changeDic:changeDic sub_Class:subModelClass];
+                    subModelClass = [self GW_HasExistClass:key changeDic:changeDic sub_Class:subModelClass class:class];
                     if (!subModelClass) {
                         subModelClass = [obj class]; 
                     }
@@ -494,6 +494,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             }];
         }else{
             modelObject = [class new];
+            NSLog(@"%@",modelObject);
             [objDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 SEL setter = nil;
                 GW_ModelPropertyType *propertyType = nil;
@@ -530,7 +531,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
                 Class sub_Class = NSClassFromString(key);
                 switch (propertyType.type) {
                     case _Array:
-                        sub_Class = [self GW_HasExistClass:key changeDic:changeDic sub_Class:sub_Class];
+                        sub_Class = [self GW_HasExistClass:key changeDic:changeDic sub_Class:sub_Class class:class];
 
                         if (sub_Class) {
                             ((void (*)(id, SEL, NSArray *))(void *) objc_msgSend)((id)modelObject, propertyType.setter, [self GW_ModelDataEngine:obj class:sub_Class changeDic:changeDic]);
@@ -539,7 +540,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
                         }
                         break;
                     case _Dictionary:
-                        sub_Class = [self GW_HasExistClass:key changeDic:changeDic sub_Class:sub_Class];
+                        sub_Class = [self GW_HasExistClass:key changeDic:changeDic sub_Class:sub_Class class:class];
                        
                         if (sub_Class) {
                             
@@ -629,8 +630,8 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
     }
 }
 
-+ (id)GW_HasExistClass:(NSString *)key changeDic:(NSDictionary *)changeDic sub_Class:(Class)sub_Class{
-    __block Class s_class = sub_Class;
++ (id)GW_HasExistClass:(NSString *)key changeDic:(NSDictionary *)changeDic sub_Class:(Class)key_sub_Class class:(Class)class{
+    __block Class s_class = key_sub_Class;
     if (!s_class) {
         s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
     }
@@ -639,18 +640,32 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
         s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
     }
     
-    if (!s_class) {
-        if (changeDic) {
-            [changeDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull changeKey, Class  _Nonnull changeObj, BOOL * _Nonnull stop) {
-                if ([changeKey isEqualToString:key]) {
-                    s_class = changeObj;
-                }
-            }];
+    if (!s_class && class) {
+        if ([class respondsToSelector:@selector(GW_ModelDelegateReplacePropertyMapper)]) {
+            NSDictionary *classDic = [class GW_ModelDelegateReplacePropertyMapper];
+            s_class = [self checkClass:classDic key:key];
         }
     }
     
     if (!s_class) {
+        s_class = [self checkClass:changeDic key:key];
+    }
+    
+    if (!s_class) {
         return nil;
+    }
+    return s_class;
+}
+
++ (Class)checkClass:(NSDictionary *)dict key:(NSString *)key{
+    __block Class s_class = nil;
+    if (dict) {
+        [dict enumerateKeysAndObjectsUsingBlock:^(NSString * changeKey, Class changeObj, BOOL * _Nonnull stop) {
+            if ([changeKey isEqualToString:key]) {
+                s_class = changeObj;
+                *stop = YES;
+            }
+        }];
     }
     return s_class;
 }
@@ -768,9 +783,6 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
     }
     return nil;
 }
-
-
-
 
 
 

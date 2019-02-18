@@ -25,8 +25,13 @@ return self; \
 }\
 - (id)copyWithZone:(NSZone *)zone { return [self GW_Copy:self]; }
 
+@protocol GW_Model_ChangeDelegate <NSObject>
+@optional
+// 可自定义类<替换实际属性名,实际类>
++ (NSDictionary <NSString *, Class> *)GW_ModelDelegateReplacePropertyMapper;
+@end
 
-@interface NSObject (GW_Model)
+@interface NSObject (GW_Model)<GW_Model_ChangeDelegate>
 
 #pragma mark json->model 使用注意事项，需要保证属性名称和json里的参数名,参数名类型（array/dictionary/model）一致，否则会解析成null，支持model多继承，对于array／dictionary里包含的model类型，需要将model类名和参数名保持一致，如果要自定义参数名，请用带changeDic参数的方法
 
@@ -55,7 +60,7 @@ return self; \
 
  @param json json
  @param keyPath 路径需要用“／”区分
- @param changeDic model类名称和参数名不一样的，主要针对array/dictionary里泛型获取不到，无法知道array／dictionary里面装的类的名称
+ @param changeDic model类名称和参数名不一样的，主要针对array/dictionary里泛型获取不到，无法知道array／dictionary里面装的类的名称，如果改变类名出现相同key，请用代理，代理的优先级大于此字典
  @return model
  */
 + (id)GW_JsonToModel:(id)json keyPath:(NSString *)keyPath changeDic:(NSDictionary<NSString *,Class> *)changeDic;
