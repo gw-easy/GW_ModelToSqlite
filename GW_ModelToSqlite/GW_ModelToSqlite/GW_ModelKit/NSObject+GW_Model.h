@@ -29,6 +29,8 @@ return self; \
 @optional
 // 可自定义类<替换实际属性名,实际类>
 + (NSDictionary <NSString *, Class> *)GW_ModelDelegateReplacePropertyMapper;
+//每一个json->model转换完成后的类回调 obj返回的实例对象，可对自定义属性进行自定义操作
++ (void)GW_JsonToModelFinish:(NSObject *)Obj;
 @end
 
 @interface NSObject (GW_Model)<GW_Model_ChangeDelegate>

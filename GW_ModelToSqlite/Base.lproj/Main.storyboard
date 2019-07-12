@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,57 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ww-Hp-yIe">
+                                <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="83s-JE-2k2"/>
+                                </constraints>
+                                <state key="normal" title="普通json转model"/>
+                                <connections>
+                                    <action selector="test_1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAv-hv-5W0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6A-sJ-Xad">
+                                <rect key="frame" x="0.0" y="94" width="375" height="44"/>
+                                <state key="normal" title="多层次json转model"/>
+                                <connections>
+                                    <action selector="test_2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ghf-OA-a0t"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noz-gz-dgl">
+                                <rect key="frame" x="0.0" y="138" width="375" height="44"/>
+                                <state key="normal" title="转model结束后添加自己自定义参数"/>
+                                <connections>
+                                    <action selector="test_3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UmV-l4-Kbz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObU-hd-fbP">
+                                <rect key="frame" x="0.0" y="226" width="375" height="44"/>
+                                <state key="normal" title="model存入数据库"/>
+                                <connections>
+                                    <action selector="test_4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HfM-oz-zW1"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A6A-sJ-Xad" firstAttribute="width" secondItem="5ww-Hp-yIe" secondAttribute="width" id="6he-8M-Crf"/>
+                            <constraint firstItem="ObU-hd-fbP" firstAttribute="top" secondItem="noz-gz-dgl" secondAttribute="bottom" constant="44" id="E7h-i4-bv2"/>
+                            <constraint firstItem="noz-gz-dgl" firstAttribute="leading" secondItem="A6A-sJ-Xad" secondAttribute="leading" id="EQv-gM-CbU"/>
+                            <constraint firstItem="noz-gz-dgl" firstAttribute="height" secondItem="A6A-sJ-Xad" secondAttribute="height" id="HtI-fg-zSE"/>
+                            <constraint firstItem="A6A-sJ-Xad" firstAttribute="top" secondItem="5ww-Hp-yIe" secondAttribute="bottom" id="KRH-kG-82N"/>
+                            <constraint firstItem="5ww-Hp-yIe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="aRi-CY-y6v"/>
+                            <constraint firstItem="ObU-hd-fbP" firstAttribute="width" secondItem="noz-gz-dgl" secondAttribute="width" id="cQA-Rj-yD9"/>
+                            <constraint firstItem="5ww-Hp-yIe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cUs-uf-hW5"/>
+                            <constraint firstItem="5ww-Hp-yIe" firstAttribute="top" secondItem="sfI-Wf-3gL" secondAttribute="bottom" constant="30" id="hMW-AB-3Af"/>
+                            <constraint firstItem="ObU-hd-fbP" firstAttribute="height" secondItem="noz-gz-dgl" secondAttribute="height" id="hd9-bT-aEB"/>
+                            <constraint firstItem="A6A-sJ-Xad" firstAttribute="height" secondItem="5ww-Hp-yIe" secondAttribute="height" id="if1-mj-NZ6"/>
+                            <constraint firstItem="ObU-hd-fbP" firstAttribute="leading" secondItem="noz-gz-dgl" secondAttribute="leading" id="mbj-fS-c8l"/>
+                            <constraint firstItem="noz-gz-dgl" firstAttribute="width" secondItem="A6A-sJ-Xad" secondAttribute="width" id="ngk-3J-pw4"/>
+                            <constraint firstItem="A6A-sJ-Xad" firstAttribute="centerX" secondItem="5ww-Hp-yIe" secondAttribute="centerX" id="nkk-A8-hV4"/>
+                            <constraint firstItem="noz-gz-dgl" firstAttribute="top" secondItem="A6A-sJ-Xad" secondAttribute="bottom" id="xLM-Hg-8W5"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

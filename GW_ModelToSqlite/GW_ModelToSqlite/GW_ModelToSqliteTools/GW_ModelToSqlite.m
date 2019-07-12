@@ -242,7 +242,7 @@ static GW_ModelToSqlite *base = nil;
 
 + (BOOL)insertModel:(id)modelObj{
     if (modelObj) {
-        return [self insertArrayModel:@[modelObj]];
+        return [self insertArrayModel:[modelObj isKindOfClass:[NSArray class]]?modelObj:@[modelObj]];
     }
     return NO;
 }

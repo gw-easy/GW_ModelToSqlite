@@ -614,7 +614,9 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
                 }
             }];
         }
-        
+        if ([class respondsToSelector:@selector(GW_JsonToModelFinish:)]) {
+            [class GW_JsonToModelFinish:modelObject];
+        }
         return modelObject;
     }else if([objc isKindOfClass:[NSArray class]]){
         NSMutableArray *modelArray = [NSMutableArray new];

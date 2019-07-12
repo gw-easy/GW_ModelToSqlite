@@ -2,19 +2,19 @@
     "data": {
         "feedbacks": {
             "feedbacklist": [
-                             {
-                             "comment": "5分",
-                             "createtime": "2016.09.07 12:38",
-                             "score": 5,
-                             "username": "1331##11",
-                             "setModel":{
-                             "model1Str":"222",
-                             "baseModel_Int":56,
-                             "baseMM_float":78.0,
-                             "baseM":"999"
-                             },
-                             
-                             }
+                                 {
+                                 "comment": "5分",
+                                 "createtime": "2016.09.07 12:38",
+                                 "score": 5,
+                                 "username": "1331##11",
+                                 "setModel":{
+                                     "model1Str":"222",
+                                     "baseModel_Int":56,
+                                     "baseMM_float":78.0,
+                                     "baseM":"999"
+                                     },
+                                 
+                                 }
                              ],
             "totalcount": 1,
             "totalscore": 5
@@ -26,59 +26,59 @@
             "baseM":"999"
         },
         "liketeamlist": [
-                         {
-                         "limage": "http://baidu.com.465.jpg",
-                         "lmarketprice": 199,
-                         "lteamId": 386,
-                         "lteamprice": 38,
-                         "ltitle": "我才是测试文本哦,用于测试此次验证。",
-                         "seModel":{
-                         "model1Str":"222",
-                         "baseModel_Int":56,
-                         "baseMM_float":78.0,
-                         "baseM":"999"
-                         },
-                         },
-                         {
-                         "limage": "http://baidu.com/37.jpg",
-                         "lmarketprice": 3380,
-                         "lteamId": 57133,
-                         "lteamprice": 580,
-                         "ltitle": "测试文本,15级软件开发！",
-                         }
+                             {
+                             "limage": "http://baidu.com.465.jpg",
+                             "lmarketprice": 199,
+                             "lteamId": 386,
+                             "lteamprice": 38,
+                             "ltitle": "我才是测试文本哦,用于测试此次验证。",
+                             "seModel":{
+                                 "model1Str":"222",
+                                 "baseModel_Int":56,
+                                 "baseMM_float":78.0,
+                                 "baseM":"999"
+                                 },
+                             },
+                             {
+                             "limage": "http://baidu.com.465.jpg",
+                             "lmarketprice": 3380,
+                             "lteamId": 57133,
+                             "lteamprice": 580,
+                             "ltitle": "222222",
+                             }
                          ],
         "partnerteamlist": [
-                            {
-                            "pteamId": 35,
-                            "pteamprice": 228,
-                            "ptitle": "计算机应用专业。",
-                            "setModel":{
-                            "model1Str":"222",
-                            "baseModel_Int":56,
-                            "baseMM_float":78.0,
-                            "baseM":"999"
-                            },
-                            },
-                            {
-                            "pteamId": 72598,
-                            "pteamprice": 2888,
-                            "ptitle": "潍坊职业学院。"
-                            },
-                            {
-                            "pteamId": 3613,
-                            "pteamprice": 499,
-                            "ptitle": "2015级！"
-                            },
-                            {
-                            "pteamId": 72638,
-                            "pteamprice": 4299,
-                            "ptitle": "本次测试于16年9月7日。"
-                            },
-                            {
-                            "pteamId": 716,
-                            "pteamprice": 38,
-                            "ptitle": "后期持续更新！"
-                            }
+                                {
+                                    "pteamId": 35,
+                                    "pteamprice": 228,
+                                    "ptitle": "计算机应用专业。",
+                                    "setModel":{
+                                    "model1Str":"222",
+                                    "baseModel_Int":56,
+                                    "baseMM_float":78.0,
+                                    "baseM":"999"
+                                    },
+                                },
+                                {
+                                "pteamId": 72598,
+                                "pteamprice": 2888,
+                                "ptitle": "1111111"
+                                },
+                                {
+                                "pteamId": 3613,
+                                "pteamprice": 499,
+                                "ptitle": "2222222"
+                                },
+                                {
+                                "pteamId": 72638,
+                                "pteamprice": 4299,
+                                "ptitle": "3333333"
+                                },
+                                {
+                                "pteamId": 716,
+                                "pteamprice": 38,
+                                "ptitle": "后期持续更新！"
+                                }
                             ]
     },
     "state": 1 ,

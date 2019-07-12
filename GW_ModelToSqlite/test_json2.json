@@ -1,0 +1,144 @@
+{
+    "Data" =     (
+    {
+        "Children" =             (
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "e3e7bb3e-a50a-4f58-bb36-584f988a0039";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L002-19-36628-5605.mp4";
+            "ParentId" = "ddb3e2b6-2dca-4354-a576-d44d288d8fff";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U5bfc\U5b66\U8bfe\Uff1a\U8003\U8bd5\U4ecb\U7ecd\U53ca\U8003\U60c5\U5206\U6790\Uff082\Uff09";
+            "pBuyInfo" = "";
+        },
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "81ed6df6-ccee-4a25-a1a5-1eaaa890396d";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L003-19-36628-1307.mp4";
+            "ParentId" = "ddb3e2b6-2dca-4354-a576-d44d288d8fff";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U5bfc\U5b66\U8bfe\Uff1a\U8003\U8bd5\U4ecb\U7ecd\U53ca\U8003\U60c5\U5206\U6790\Uff083\Uff09";
+            "pBuyInfo" = "";
+        }
+        );
+        "ClassHoursInfo" = "";
+        "Id" = "ddb3e2b6-2dca-4354-a576-d44d288d8fff";
+        "LectureNotesInfo" = "";
+        "Level" = 0;
+        "MP4Url" = "";
+        "ParentId" = "00000000-0000-0000-0000-000000000000";
+        "Process" = 0;
+        "Status" = 0;
+        "Title" = "\U5bfc\U5b66\U8bfe\Uff1a\U8003\U8bd5\U4ecb\U7ecd\U53ca\U8003\U60c5\U5206\U6790";
+        "pBuyInfo" = "";
+    },
+    {
+        "Children" =             (
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "73dbe06e-6eb6-4aee-a95e-ded032048bd8";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L006-19-36628-5670.mp4";
+            "ParentId" = "d623c0d5-9e52-4e41-b083-37df7eb81f63";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U3010\U57fa\U7840\U3011\U7b2c\U4e09\U7ae0 \U7206\U70b8";
+            "pBuyInfo" = "";
+        },
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "bc60b22e-2555-4d7e-b50e-9b17a70fb2e3";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L007-19-36628-4332.mp4";
+            "ParentId" = "d623c0d5-9e52-4e41-b083-37df7eb81f63";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U3010\U57fa\U7840\U3011\U7b2c\U56db\U7ae0 \U6613\U71c3\U6613\U7206\U5371\U9669\U54c1";
+            "pBuyInfo" = "";
+        }
+        );
+        "ClassHoursInfo" = "";
+        "Id" = "d623c0d5-9e52-4e41-b083-37df7eb81f63";
+        "LectureNotesInfo" = "";
+        "Level" = 0;
+        "MP4Url" = "";
+        "ParentId" = "00000000-0000-0000-0000-000000000000";
+        "Process" = 0;
+        "Status" = 0;
+        "Title" = "\U7b2c\U4e00\U7bc7 \U6d88\U9632\U57fa\U7840\U77e5\U8bc6";
+        "pBuyInfo" = "";
+    },
+    {
+        "Children" =             (
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "5ef7673c-7a14-4f40-829f-ab11611fa006";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L076-17-36628-4647.mp4";
+            "ParentId" = "b2641a7f-1393-4652-bad7-e33b694a6b75";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U301017\U5e74\U6559\U6750\U5185\U5bb9\U3011\U672c\U8282\U4ec5\U4f9b\U53c2\U8003";
+            "pBuyInfo" = "";
+        },
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "be92b9cd-dfa2-4fd2-9c4d-3df45a3edf6c";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L077-17-36628-3672.mp4";
+            "ParentId" = "b2641a7f-1393-4652-bad7-e33b694a6b75";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U301017\U5e74\U6559\U6750\U5185\U5bb9\U3011\U672c\U8282\U4ec5\U4f9b\U53c2\U8003";
+            "pBuyInfo" = "";
+        },
+        {
+            "Children" =                     (
+            );
+            "ClassHoursInfo" = "";
+            "Id" = "e637377c-18e0-4496-a078-da9f8af54f88";
+            "LectureNotesInfo" = "";
+            "Level" = 1;
+            "MP4Url" = "/courseware/36628/L078-17-36628-8580.mp4";
+            "ParentId" = "b2641a7f-1393-4652-bad7-e33b694a6b75";
+            "Process" = 0;
+            "Status" = 0;
+            "Title" = "\U301017\U5e74\U6559\U6750\U5185\U5bb9\U3011\U672c\U8282\U4ec5\U4f9b\U53c2\U8003";
+            "pBuyInfo" = "";
+        }
+        );
+        "ClassHoursInfo" = "";
+        "Id" = "b2641a7f-1393-4652-bad7-e33b694a6b75";
+        "LectureNotesInfo" = "";
+        "Level" = 0;
+        "MP4Url" = "";
+        "ParentId" = "00000000-0000-0000-0000-000000000000";
+        "Process" = 0;
+        "Status" = 0;
+        "Title" = "\U7b2c\U4e94\U7bc7 \U6d88\U9632\U5b89\U5168\U8bc4\U4f30";
+        "pBuyInfo" = "";
+    }
+    );
+}

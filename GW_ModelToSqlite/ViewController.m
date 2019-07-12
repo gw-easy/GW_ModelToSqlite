@@ -19,43 +19,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    /// 从文件ModelObject读取json对象
-//    NSString * jsonString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ModelObject" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
-//    Model1 *list1 = [Model1 GW_JsonToModel:jsonString keyPath:@"data/setModel"];
-//    list1.gerCode = 5;
-//    [GW_ModelToSqlite insertModel:list1];
-    
-//    NSArray *arr = [GW_ModelToSqlite query:[Model1 class]];
-//
-//    for (int i = 0; i<arr.count; i++) {
-//        Model1 *ms = arr[i];
-//        ms.numCode = i;
-//        ms.strstr111 = [NSString stringWithFormat:@"%d--ms",i];
-////        ms.gerCode = i;
-//        [GW_ModelToSqlite update:ms where:[NSString stringWithFormat:@"model1_int = %d",i]];
-////        [GW_ModelToSqlite update:ms where:[NSString stringWithFormat:@"model1_int = %d",i]];
-//    }
-
-    
-    
-//    [GW_ModelToSqlite delete_class:[Model1 class] where:@"model1_int = 1"];
-//
-//    NSArray *arr2 = [GW_ModelToSqlite query:[Model1 class]];
-//    for (Model1 *tb in arr2) {
-//        NSLog(@"tb==%@",[tb GW_ModelToDictionary:tb]);
-//    }
-//    清理数据
-    [GW_ModelToSqlite removeAllTable];
-    
-    [self test1];
-
-    
-}
-
-- (void)test1{
+- (IBAction)test_1:(id)sender {
     /// 从文件ModelObject读取json对象
     NSString * jsonString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ModelObject" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     
@@ -66,38 +30,66 @@
                                                                                         }];
     
     
-    BOOL result = [GW_ModelToSqlite insertModel:testmodel];
-    
-    if (result) {
-        NSArray *testArr = [GW_ModelToSqlite query:[testmodel class]];
-        for (TestModel *tes in testArr) {
-            NSLog(@"tes --- %@",tes);
-            for (feedback_testContent *mm in testmodel.data.feedbacks.feedbacklist) {
-                
-                
-                NSLog(@"%@----",mm.setModel.model1Str);
-            }
-            
-            
-            for (Partnerteamlist_test *par in testmodel.data.partnerteamlist) {
-                NSLog(@"%@----%@",par,par.setModel);
-            }
-            
-            
-            for (Liketeam_testContent *like in testmodel.data.liketeamlist) {
-                NSLog(@"%@-----%@",like,like.seModel);
-            }
-            NSLog(@"sssss===%@",testmodel.setModel);
-            NSLog(@"testModel === %@",[testmodel GW_ModelToDictionary:testmodel]);
-            NSLog(@"testModel===%@-------%@",testmodel.data.partnerteamlist,testmodel.data.liketeamlist);
-        }
+    for (feedback_testContent *mm in testmodel.data.feedbacks.feedbacklist) {
+        
+        
+        NSLog(@"%@----",mm.setModel.model1Str);
     }
+    
+    
+    for (Partnerteamlist_test *par in testmodel.data.partnerteamlist) {
+        NSLog(@"%@----%@",par,par.setModel);
+    }
+    
+    
+    for (Liketeam_testContent *like in testmodel.data.liketeamlist) {
+        NSLog(@"%@-----%@",like,like.seModel);
+    }
+    NSLog(@"sssss===%@",testmodel.setModel);
+    NSLog(@"testModel === %@",[testmodel GW_ModelToDictionary:testmodel]);
+    NSLog(@"testModel===%@-------%@",testmodel.data.partnerteamlist,testmodel.data.liketeamlist);
+    
+    NSData *testData = [NSKeyedArchiver archivedDataWithRootObject:testmodel];
+    TestModel *testM2 = [NSKeyedUnarchiver unarchiveObjectWithData:testData];
+    NSLog(@"testM2===%@-------%@",testM2.data.partnerteamlist,testM2.data.liketeamlist);
+    
+    
+    NSArray *arr = [feedback_testContent GW_JsonToModel:jsonString keyPath:@"data/feedbacks/feedbacklist"];
+    
+    for (feedback_testContent *list in arr) {
+        
+        NSLog(@"list = %@\n",[list GW_ModelToDictionary:list]);
+    }
+    
+    Model1 *list1 = [Model1 GW_JsonToModel:jsonString keyPath:@"data/setModel"];
+    /************** 归档对象 **************/
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:list1];
+    
+    /************** 解归档对象 **************/
+    Model1 *list2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"list2 = %@\n",[list2 GW_ModelToDictionary:list2]);
+    
+    Model1 *list3 = [list2 copy];
+    list3.baseMM_float = 666;
+    NSLog(@"list3==%@----list2==%@",list3,list2);
+    NSLog(@"list3.Index==%ld-----list2.Index==%ld",(long)list3.baseMM_float,(long)list2.baseMM_float);
+}
 
+- (IBAction)test_2:(id)sender {
+    
+}
+
+- (IBAction)test_3:(id)sender {
+    
+}
+
+- (IBAction)test_4:(id)sender {
+    NSString * jsonString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ModelObject" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     
     Model1 *list1 = [Model1 GW_JsonToModel:jsonString keyPath:@"data/setModel"];
     
     list1.arr = [NSMutableArray arrayWithArray:@[@"111",@"222",@"333"]];
-//    
+    //
     Model1 *list3 = [list1 copy];
     list3.baseMM_float = 666;
     list3.model1_int = 1;
@@ -111,40 +103,49 @@
     list6.model1_int = 4;
     NSArray *listArr = @[list1,list3,list4,list5,list6];
     [GW_ModelToSqlite insertArrayModel:listArr];
-
+    
     //指定搜索对象
     [self getWhereArr];
-
+    
     //根据某个属性降序
     [self getDescArr];
-
+    
     //根据某个属性升序
     [self getAscArr];
-
-//    限制查询数量
+    
+    //    限制查询数量
     [self getLimitArr];
-
-//    有查询条件和数量限制
+    
+    //    有查询条件和数量限制
     [self getWhereAndLimitArr];
-
-//    有排序和数量限制
+    
+    //    有排序和数量限制
     [self getOrderAndLimitArr];
-
-//    有查询条件/有排序/数量限制
+    
+    //    有查询条件/有排序/数量限制
     [self getwhereorderlimitArr];
-
-//    通过sqlite自有函数查询
+    
+    //    通过sqlite自有函数查询
     [self getFuncStr1Arr];
-
-//    通过sqlite自有函数查询+条件
+    
+    //    通过sqlite自有函数查询+条件
     [self getfuncAndConditionNB];
-
-//    更新model+位置
+    
+    //    更新model+位置
     [self getupdateAndWhere];
-
-//    指定某个值更改
+    
+    //    指定某个值更改
     [self getupdatevaluewhereArr];
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+//    清理数据
+    [GW_ModelToSqlite removeAllTable];
+    
+}
+
 
 - (void)getupdatevaluewhereArr{
     [GW_ModelToSqlite update:[Model1 class] value:@"model1Str = 'yjy'" where:@"model1_int = 3"];
