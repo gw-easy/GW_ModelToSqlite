@@ -10,9 +10,9 @@
 #import "GW_ModelToSqlite.h"
 #import "TestModel.h"
 #import "Test_Model2.h"
+#import "Test_model3.h"
 #import "NSObject+GW_Model.h"
-#define mainP [NSString stringWithFormat:@"%@/Library/Caches/gw",NSHomeDirectory()]
-#define siPath @"gw/hehe/"
+
 @interface ViewController ()
 
 @end
@@ -76,11 +76,37 @@
 }
 
 - (IBAction)test_2:(id)sender {
+    /// 从文件test_json读取json对象
+    NSString * jsonString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test_json" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     
+    Test_Model2 *model2 = [Test_Model2 GW_JsonToModel:jsonString];
+    
+    for (addressModel *addr in model2.address) {
+        NSLog(@"addressModel = %@",addr);
+    }
+    
+    for (emailModel *addr in model2.email) {
+        NSLog(@"emailModel = %@",addr);
+    }
+    
+    NSLog(@"setModel = %@,setModel.model2 = %@",model2.setModel,model2.setModel.model2);
 }
 
 - (IBAction)test_3:(id)sender {
+    NSString * jsonString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test_json2" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     
+    NSMutableArray *model3Arr = [Test_model3 GW_JsonToModel:jsonString keyPath:@"Data"];
+    
+    [self showID:model3Arr];
+}
+
+- (void)showID:(NSArray *)childArr{
+    for (Test_model3 *child in childArr) {
+        NSLog(@"childID = %@ ---- hasChild = %@",child.Id,@(child.hasChild));
+        if (child.Children.count > 0) {
+            [self showID:child.Children];
+        }
+    }
 }
 
 - (IBAction)test_4:(id)sender {

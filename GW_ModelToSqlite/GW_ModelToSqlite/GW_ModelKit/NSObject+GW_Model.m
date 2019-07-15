@@ -634,13 +634,6 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 
 + (id)GW_HasExistClass:(NSString *)key changeDic:(NSDictionary *)changeDic sub_Class:(Class)key_sub_Class class:(Class)class{
     __block Class s_class = key_sub_Class;
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
-    }
-    
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
-    }
     
     if (!s_class && class) {
         if ([class respondsToSelector:@selector(GW_ModelDelegateReplacePropertyMapper)]) {
@@ -651,6 +644,14 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
     
     if (!s_class) {
         s_class = [self checkClass:changeDic key:key];
+    }
+    
+    if (!s_class) {
+        s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
+    }
+    
+    if (!s_class) {
+        s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
     }
     
     if (!s_class) {

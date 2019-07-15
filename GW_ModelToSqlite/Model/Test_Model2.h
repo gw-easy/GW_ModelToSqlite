@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+GW_Model.h"
 #import "Model1.h"
 @interface itemModel:NSObject
 @property (copy, nonatomic) NSString *country;
