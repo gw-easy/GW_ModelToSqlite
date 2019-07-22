@@ -10,6 +10,7 @@
 #import "Model2.h"
 @interface Model1 : BaseModel
 @property (copy, nonatomic) NSString *model1Str;
+@property (copy, nonatomic) NSString *model1Str2;
 
 @property (assign, nonatomic) int model1_int;
 

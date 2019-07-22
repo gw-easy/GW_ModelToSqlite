@@ -12,7 +12,9 @@
 
 @end
 @implementation Model1
-
++(NSDictionary<NSString *,NSString *> *)GW_ModelDelegateReplacePropertyValue{
+    return @{@"model1Str":@"model1Str2"};
+}
 @end
 
 

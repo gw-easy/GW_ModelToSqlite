@@ -46,6 +46,7 @@
         NSLog(@"%@-----%@",like,like.seModel);
     }
     NSLog(@"sssss===%@",testmodel.setModel);
+    NSLog(@"testmodel.state =%d , testmodel.state2 =%d",testmodel.state,testmodel.state2);
     NSLog(@"testModel === %@",[testmodel GW_ModelToDictionary:testmodel]);
     NSLog(@"testModel===%@-------%@",testmodel.data.partnerteamlist,testmodel.data.liketeamlist);
     

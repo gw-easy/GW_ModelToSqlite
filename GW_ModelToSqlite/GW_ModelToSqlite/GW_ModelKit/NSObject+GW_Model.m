@@ -498,8 +498,14 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             [objDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 SEL setter = nil;
                 GW_ModelPropertyType *propertyType = nil;
-
-                
+//                NSString * reallyKey = key;
+                if ([class respondsToSelector:@selector(GW_ModelDelegateReplacePropertyValue)]) {
+                    NSDictionary *replacePropertyValueDict = [class GW_ModelDelegateReplacePropertyValue];
+                    NSString * replaceName = replacePropertyValueDict[key];
+                    if (replaceName) {
+                        key = replaceName;
+                    }
+                }
 //                获取model的类型，是否包含其他mdoel／array／dictionary
                 propertyType = [self GW_ModelExistProperty:key withObject:modelObject valueClass:[obj class]];
                 

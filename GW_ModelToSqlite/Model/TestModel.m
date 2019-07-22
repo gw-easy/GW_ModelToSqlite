@@ -27,4 +27,7 @@ GW_CodingImplementation
 @end
 @implementation TestModel
 GW_CodingImplementation
++(NSDictionary<NSString *,NSString *> *)GW_ModelDelegateReplacePropertyValue{
+    return @{@"state":@"state2"};
+}
 @end
