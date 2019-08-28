@@ -12,7 +12,7 @@
 #import "Test_Model2.h"
 #import "Test_model3.h"
 #import "NSObject+GW_Model.h"
-
+#import "SsqModel.h"
 @interface ViewController ()
 
 @end
@@ -171,8 +171,14 @@
 //    清理数据
     [GW_ModelToSqlite removeAllTable];
     
+    [self test5];
 }
 
+- (void)test5{
+    NSArray *subArr =nil;
+    NSString *jsonStr = [subArr GW_ModelToJson:subArr];
+    NSLog(@"%---@",jsonStr);
+}
 
 - (void)getupdatevaluewhereArr{
     [GW_ModelToSqlite update:[Model1 class] value:@"model1Str = 'yjy'" where:@"model1_int = 3"];
@@ -279,9 +285,48 @@
     
 }
 
+- (IBAction)ssqAction:(id)sender {
+    NSData *data= [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ssq" ofType:@"json"]];
+    NSArray *ssqMArr = [SsqModel GW_JsonToModel:data];
+    
+//    NSLog(@"model2 = %@",[ssqMArr GW_ModelToJson:nil]);
+    
+    for (int i = 0; i<ssqMArr.count; i++) {
+        for (int y = i+1; y<ssqMArr.count; y++) {
+            [self dict:ssqMArr[i] isEqualTo:ssqMArr[y] addBlue:NO];
+        }
+    }
+    
+}
+
+- (BOOL)dict:(SsqModel *)dict1 isEqualTo:(SsqModel *)dict2 addBlue:(BOOL)blue{
+    if ([dict1.red1 isEqualToString:dict2.red1]
+        && [dict1.red2 isEqualToString:dict2.red2]
+        && [dict1.red3 isEqualToString:dict2.red3]
+        && [dict1.red4 isEqualToString:dict2.red4]
+        && [dict1.red5 isEqualToString:dict2.red5]
+        && [dict1.red6 isEqualToString:dict2.red6]
+        ) {
+        if (blue && [dict1.blue isEqualToString:dict2.blue]) {
+            NSLog(@"相同model-date = %@ -- %@",dict1.date,dict2.date);
+            NSLog(@"red1 = %@ red2 = %@ red3 = %@ red4 = %@ red5 = %@ red6 =  %@",dict1.red1,dict1.red2,dict1.red3,dict1.red4,dict1.red5,dict1.red6);
+            NSLog(@"blue = %@",dict1.blue);
+            return YES;
+        }
+        NSLog(@"相同model-date = %@ -- %@",dict1.date,dict2.date);
+        NSLog(@"red1 = %@ red2 = %@ red3 = %@ red4 = %@ red5 = %@ red6 =  %@",dict1.red1,dict1.red2,dict1.red3,dict1.red4,dict1.red5,dict1.red6);
+        return YES;
+    }
+    return NO;
+}
+    
+
+
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"didReceiveMemoryWarning");
 }
 
 

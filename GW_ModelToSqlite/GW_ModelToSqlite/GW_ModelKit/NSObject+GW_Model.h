@@ -71,12 +71,12 @@ return self; \
 
 ///////////////////////////////////////////////////////
 
-#pragma mark model->json 支持深层递归 支持多继承 注意事项：model嵌套的model必须实例化，否则解析为null
+#pragma mark model->json 支持深层递归 支持多段继承 注意事项：model嵌套的model必须实例化，否则解析为null
 
 /**
  model转json
 
- @param rootObj model本身
+ @param rootObj 无特殊情况传nil 如果是多段继承model传model对象
  @return json
  */
 - (NSString *)GW_ModelToJson:(__kindof NSObject *)rootObj;
@@ -85,7 +85,7 @@ return self; \
 /**
  model转NSDictionary
 
- @param rootObj model本身
+ @param rootObj 无特殊情况传nil 如果是多段继承model传model对象
  @return NSDictionary
  */
 - (NSDictionary *)GW_ModelToDictionary:(__kindof NSObject *)rootObj;

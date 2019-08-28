@@ -315,7 +315,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 }
 
 - (NSDictionary *)GW_ModelToDictionary:(__kindof NSObject *)rootObj{
-    NSMutableDictionary * jsonDictionary = [NSMutableDictionary new];
+    NSMutableDictionary * jsonDictionary = [[NSMutableDictionary alloc] init];
     Class superClass = class_getSuperclass(self.class);
     if (superClass &&
         superClass != [NSObject class]) {
@@ -494,11 +494,10 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             }];
         }else{
             modelObject = [class new];
-            NSLog(@"%@",modelObject);
+//            NSLog(@"%@",modelObject);
             [objDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 SEL setter = nil;
                 GW_ModelPropertyType *propertyType = nil;
-//                NSString * reallyKey = key;
                 if ([class respondsToSelector:@selector(GW_ModelDelegateReplacePropertyValue)]) {
                     NSDictionary *replacePropertyValueDict = [class GW_ModelDelegateReplacePropertyValue];
                     NSString * replaceName = replacePropertyValueDict[key];
