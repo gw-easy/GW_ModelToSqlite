@@ -651,13 +651,15 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
         s_class = [self checkClass:changeDic key:key];
     }
     
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
-    }
-    
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
-    }
+//    首字母大写
+//    if (!s_class) {
+//        s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
+//    }
+//
+//    后缀添加model
+//    if (!s_class) {
+//        s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
+//    }
     
     if (!s_class) {
         return nil;
