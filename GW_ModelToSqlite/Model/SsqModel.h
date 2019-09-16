@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *red4;
 @property (copy, nonatomic) NSString *red5;
 @property (copy, nonatomic) NSString *red6;
+@property (copy, nonatomic) NSString *red7;
+@property (strong ,nonatomic) NSNumber *Id;
+@property (assign, nonatomic) BOOL isNotLogin;
 @property (copy, nonatomic) NSString *blue;
     
 @end

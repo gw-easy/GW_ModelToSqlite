@@ -7,7 +7,8 @@
 //
 
 #import "Model3.h"
+#import "NSObject+GW_Model.h"
 
 @implementation Model3
-
+GW_CodingImplementation
 @end

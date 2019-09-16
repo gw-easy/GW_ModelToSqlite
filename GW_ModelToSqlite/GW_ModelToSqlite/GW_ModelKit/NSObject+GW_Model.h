@@ -76,7 +76,7 @@ return self; \
 /**
  model转json
 
- @param rootObj 无特殊情况传nil 如果是多段继承model传model对象
+ @param rootObj 传对象本身
  @return json
  */
 - (NSString *)GW_ModelToJson:(__kindof NSObject *)rootObj;
@@ -85,7 +85,7 @@ return self; \
 /**
  model转NSDictionary
 
- @param rootObj 无特殊情况传nil 如果是多段继承model传model对象
+ @param rootObj 传对象本身
  @return NSDictionary
  */
 - (NSDictionary *)GW_ModelToDictionary:(__kindof NSObject *)rootObj;
