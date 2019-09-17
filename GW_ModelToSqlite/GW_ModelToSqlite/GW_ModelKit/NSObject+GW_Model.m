@@ -464,11 +464,11 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             }
         }else{
             //json格式不正确
-            return [self new];
+            return nil;
         }
     }
     //没有json
-    return [self new];
+    return nil;
 }
 
 

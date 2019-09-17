@@ -41,6 +41,7 @@ return self; \
 
 //默认支持的array／dictionary中model类名，1.参数名=类名（首字母不区分大小写） 2.类名=参数名+Model 3.其他格式的类名（只针对array／dictionary），需要在changeDic中，添加@{"参数名":"类名",}
 
+#pragma mark - 注意事项 json转model可能返回nil，对于model请自行实例化
 /**
  无路径转换，一个命令转换任何格式的json
 
