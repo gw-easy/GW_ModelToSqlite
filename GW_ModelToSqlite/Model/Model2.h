@@ -8,7 +8,7 @@
 
 #import "BaseModel.h"
 #import "Model3.h"
-@interface Model2 : NSObject
+@interface Model2 : NSObject<NSCopying>
 
 @property (copy, nonatomic) NSString *model2Str;
 

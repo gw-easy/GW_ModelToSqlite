@@ -53,5 +53,6 @@
 @property (strong, nonatomic) NSString *err;
 @property (strong, nonatomic) response_Test *data;
 @property (assign, nonatomic) int state;
+@property (assign, nonatomic) int state2;
 @property (strong, nonatomic) Model1 *setModel;
 @end

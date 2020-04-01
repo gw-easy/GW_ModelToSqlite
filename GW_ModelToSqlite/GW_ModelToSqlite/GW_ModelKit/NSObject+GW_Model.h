@@ -29,6 +29,8 @@ return self; \
 @optional
 // 可自定义类<替换实际属性名,实际类>
 + (NSDictionary <NSString *, Class> *)GW_ModelDelegateReplacePropertyMapper;
+// 可替换属性名值<替换实际属性名,需要赋值的属性名>
++ (NSDictionary <NSString *, NSString *> *)GW_ModelDelegateReplacePropertyValue;
 //每一个json->model转换完成后的类回调 obj返回的实例对象，可对自定义属性进行自定义操作
 + (void)GW_JsonToModelFinish:(NSObject *)Obj;
 @end
@@ -39,6 +41,7 @@ return self; \
 
 //默认支持的array／dictionary中model类名，1.参数名=类名（首字母不区分大小写） 2.类名=参数名+Model （如果不需要请求手动去除） 3.其他格式的类名（只针对array／dictionary），需要在changeDic中或者代理中，添加@{"参数名":"类名",}
 
+#pragma mark - 注意事项 json转model可能返回nil，对于model请自行实例化
 /**
  无路径转换，一个命令转换任何格式的json
 
@@ -69,12 +72,12 @@ return self; \
 
 ///////////////////////////////////////////////////////
 
-#pragma mark model->json 支持深层递归 支持多继承 注意事项：model嵌套的model必须实例化，否则解析为null
+#pragma mark model->json 支持深层递归 支持多段继承 注意事项：model嵌套的model必须实例化，否则解析为null
 
 /**
  model转json
 
- @param rootObj model本身
+ @param rootObj 传对象本身
  @return json
  */
 - (NSString *)GW_ModelToJson:(__kindof NSObject *)rootObj;
@@ -83,7 +86,7 @@ return self; \
 /**
  model转NSDictionary
 
- @param rootObj model本身
+ @param rootObj 传对象本身
  @return NSDictionary
  */
 - (NSDictionary *)GW_ModelToDictionary:(__kindof NSObject *)rootObj;

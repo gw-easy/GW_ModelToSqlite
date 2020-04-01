@@ -315,7 +315,7 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 }
 
 - (NSDictionary *)GW_ModelToDictionary:(__kindof NSObject *)rootObj{
-    NSMutableDictionary * jsonDictionary = [NSMutableDictionary new];
+    NSMutableDictionary * jsonDictionary = [[NSMutableDictionary alloc] init];
     Class superClass = class_getSuperclass(self.class);
     if (superClass &&
         superClass != [NSObject class]) {
@@ -393,11 +393,11 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             [subValue isKindOfClass:[NSNumber class]]) {
             [subJsonDictionary setValue:subValue forKey:key];
         }else if ([subValue isKindOfClass:[NSDictionary class]]){
-            [subJsonDictionary setValue:[self GW_ParserDictionaryEngine:subValue rootObj:rootObj] forKey:key];
+            [subJsonDictionary setValue:[self GW_ParserDictionaryEngine:subValue rootObj:subValue] forKey:key];
         }else if ([subValue isKindOfClass:[NSArray class]]) {
-            [subJsonDictionary setValue:[self GW_ParserArrayEngine:subValue rootObj:rootObj] forKey:key];
+            [subJsonDictionary setValue:[self GW_ParserArrayEngine:subValue rootObj:subValue] forKey:key];
         }else {
-            [subJsonDictionary setValue:[subValue GW_ModelToDictionary:rootObj] forKey:key];
+            [subJsonDictionary setValue:[subValue GW_ModelToDictionary:subValue] forKey:key];
         }
     }
     return subJsonDictionary;
@@ -411,11 +411,11 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             [subValue isKindOfClass:[NSNumber class]]) {
             [subJsonArray addObject:subValue];
         }else if ([subValue isKindOfClass:[NSDictionary class]]){
-            [subJsonArray addObject:[self GW_ParserDictionaryEngine:subValue rootObj:rootObj]];
+            [subJsonArray addObject:[self GW_ParserDictionaryEngine:subValue rootObj:subValue]];
         }else if ([subValue isKindOfClass:[NSArray class]]) {
-            [subJsonArray addObject:[self GW_ParserArrayEngine:subValue rootObj:rootObj]];
+            [subJsonArray addObject:[self GW_ParserArrayEngine:subValue rootObj:subValue]];
         }else {
-            [subJsonArray addObject:[subValue GW_ModelToDictionary:rootObj]];
+            [subJsonArray addObject:[subValue GW_ModelToDictionary:subValue]];
         }
     }
     return subJsonArray;
@@ -494,12 +494,17 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
             }];
         }else{
             modelObject = [class new];
-            NSLog(@"%@",modelObject);
+//            NSLog(@"%@",modelObject);
             [objDic enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 SEL setter = nil;
                 GW_ModelPropertyType *propertyType = nil;
-
-                
+                if ([class respondsToSelector:@selector(GW_ModelDelegateReplacePropertyValue)]) {
+                    NSDictionary *replacePropertyValueDict = [class GW_ModelDelegateReplacePropertyValue];
+                    NSString * replaceName = replacePropertyValueDict[key];
+                    if (replaceName) {
+                        key = replaceName;
+                    }
+                }
 //                获取model的类型，是否包含其他mdoel／array／dictionary
                 propertyType = [self GW_ModelExistProperty:key withObject:modelObject valueClass:[obj class]];
                 

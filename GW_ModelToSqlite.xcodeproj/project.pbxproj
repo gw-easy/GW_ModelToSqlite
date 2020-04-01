@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		281C695522D88649001333F1 /* test_json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 281C695422D88649001333F1 /* test_json2.json */; };
 		2827A5C522DC727700A07763 /* Test_model3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2827A5C422DC727700A07763 /* Test_model3.m */; };
+		28DD81D023162A28006FC265 /* SsqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DD81CF23162A28006FC265 /* SsqModel.m */; };
+		28DD81D223162C10006FC265 /* ssq.json in Resources */ = {isa = PBXBuildFile; fileRef = 28DD81D123162C10006FC265 /* ssq.json */; };
 		C405BFDB207B0CF300057223 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C405BFDA207B0CF300057223 /* AppDelegate.m */; };
 		C405BFDE207B0CF300057223 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C405BFDD207B0CF300057223 /* ViewController.m */; };
 		C405BFE1207B0CF300057223 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C405BFDF207B0CF300057223 /* Main.storyboard */; };
@@ -54,6 +56,9 @@
 		281C695422D88649001333F1 /* test_json2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_json2.json; sourceTree = "<group>"; };
 		2827A5C322DC727700A07763 /* Test_model3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test_model3.h; sourceTree = "<group>"; };
 		2827A5C422DC727700A07763 /* Test_model3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_model3.m; sourceTree = "<group>"; };
+		28DD81CE23162A28006FC265 /* SsqModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SsqModel.h; sourceTree = "<group>"; };
+		28DD81CF23162A28006FC265 /* SsqModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SsqModel.m; sourceTree = "<group>"; };
+		28DD81D123162C10006FC265 /* ssq.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ssq.json; sourceTree = "<group>"; };
 		2DB48F46CECEEDCE998CB641 /* Pods-GW_ModelToSqlite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GW_ModelToSqlite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GW_ModelToSqlite/Pods-GW_ModelToSqlite.debug.xcconfig"; sourceTree = "<group>"; };
 		999E72AB4A2F6DCC9995621D /* libPods-GW_ModelToSqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GW_ModelToSqlite.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C405BFD6207B0CF300057223 /* GW_ModelToSqlite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GW_ModelToSqlite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +171,7 @@
 				C405BFDC207B0CF300057223 /* ViewController.h */,
 				C405BFDD207B0CF300057223 /* ViewController.m */,
 				C4E7B4082085CAFE00AC6FF2 /* ModelObject.json */,
+				28DD81D123162C10006FC265 /* ssq.json */,
 				C4E7B3FD2085CAFC00AC6FF2 /* test_json.json */,
 				281C695422D88649001333F1 /* test_json2.json */,
 				C405BFDF207B0CF300057223 /* Main.storyboard */,
@@ -252,6 +258,8 @@
 				C4F9660D2086EC280022DFC1 /* TestModel.m */,
 				2827A5C322DC727700A07763 /* Test_model3.h */,
 				2827A5C422DC727700A07763 /* Test_model3.m */,
+				28DD81CE23162A28006FC265 /* SsqModel.h */,
+				28DD81CF23162A28006FC265 /* SsqModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 				C405BFE6207B0CF300057223 /* LaunchScreen.storyboard in Resources */,
 				C405BFE3207B0CF300057223 /* Assets.xcassets in Resources */,
 				C405BFE1207B0CF300057223 /* Main.storyboard in Resources */,
+				28DD81D223162C10006FC265 /* ssq.json in Resources */,
 				C4E7B4092085CAFE00AC6FF2 /* test_json.json in Resources */,
 				281C695522D88649001333F1 /* test_json2.json in Resources */,
 				C4E7B40F2085CAFE00AC6FF2 /* ModelObject.json in Resources */,
@@ -423,6 +432,7 @@
 				C4F966132086EC280022DFC1 /* Model3.m in Sources */,
 				C4F966102086EC280022DFC1 /* BaseModel.m in Sources */,
 				C46CB45D20ECC7A000E6143B /* GW_ModelToSqlite.m in Sources */,
+				28DD81D023162A28006FC265 /* SsqModel.m in Sources */,
 				C4F966122086EC280022DFC1 /* Model2.m in Sources */,
 				C4F9660F2086EC280022DFC1 /* baseMM.m in Sources */,
 				C405BFDE207B0CF300057223 /* ViewController.m in Sources */,

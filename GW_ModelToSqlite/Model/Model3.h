@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Model3 : NSObject
+@interface Model3 : NSObject<NSCopying>
 
 @property (copy, nonatomic) NSString *model3Str;
 @property (assign, nonatomic) BOOL m3Bool;

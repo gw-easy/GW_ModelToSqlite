@@ -12,7 +12,7 @@
 #import "Test_Model2.h"
 #import "Test_model3.h"
 #import "NSObject+GW_Model.h"
-
+#import "SsqModel.h"
 @interface ViewController ()
 
 @end
@@ -46,6 +46,7 @@
         NSLog(@"%@-----%@",like,like.seModel);
     }
     NSLog(@"sssss===%@",testmodel.setModel);
+    NSLog(@"testmodel.state =%d , testmodel.state2 =%d",testmodel.state,testmodel.state2);
     NSLog(@"testModel === %@",[testmodel GW_ModelToDictionary:testmodel]);
     NSLog(@"testModel===%@-------%@",testmodel.data.partnerteamlist,testmodel.data.liketeamlist);
     
@@ -89,6 +90,7 @@
         NSLog(@"emailModel = %@",addr);
     }
     
+    NSLog(@"Test_Model2 = %@",[model2 GW_ModelToJson:model2]);
     NSLog(@"setModel = %@,setModel.model2 = %@",model2.setModel,model2.setModel.model2);
 }
 
@@ -97,6 +99,7 @@
     
     NSMutableArray *model3Arr = [Test_model3 GW_JsonToModel:jsonString keyPath:@"Data"];
     
+    NSLog(@"model3Arr = %@",[model3Arr GW_ModelToJson:model3Arr]);
     [self showID:model3Arr];
 }
 
@@ -119,6 +122,8 @@
     Model1 *list3 = [list1 copy];
     list3.baseMM_float = 666;
     list3.model1_int = 1;
+    list3.model2 = [[Model2 alloc] init];
+    list3.model2.model3 = [[Model3 alloc] init];
     Model1 *list4 = [list3 copy];
     list4.model1_int = 2;
     Model1 *list5 = [list4 copy];
@@ -128,6 +133,8 @@
     Model1 *list6 = [list5 copy];
     list6.model1_int = 4;
     NSArray *listArr = @[list1,list3,list4,list5,list6];
+    
+    NSLog(@"listArr = %@",[listArr GW_ModelToJson:listArr]);
     [GW_ModelToSqlite insertArrayModel:listArr];
     
     //指定搜索对象
@@ -170,8 +177,14 @@
 //    清理数据
     [GW_ModelToSqlite removeAllTable];
     
+    [self test5];
 }
 
+- (void)test5{
+    NSArray *subArr =nil;
+    NSString *jsonStr = [subArr GW_ModelToJson:subArr];
+    NSLog(@"%---@",jsonStr);
+}
 
 - (void)getupdatevaluewhereArr{
     [GW_ModelToSqlite update:[Model1 class] value:@"model1Str = 'yjy'" where:@"model1_int = 3"];
@@ -278,9 +291,75 @@
     
 }
 
+- (IBAction)ssqAction:(id)sender {
+    NSData *data= [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ssq" ofType:@"json"]];
+    NSArray *ssqMArr = [SsqModel GW_JsonToModel:data];
+    
+    SsqModel *oneModel = ssqMArr.firstObject;
+    NSLog(@"%@---%@",oneModel.red7,oneModel.Id);
+//    for (int i = 0; i<ssqMArr.count; i++) {
+//        for (int y = i+1; y<ssqMArr.count; y++) {
+//            [self dict:ssqMArr[i] isEqualTo:ssqMArr[y] addBlue:NO];
+//        }
+//    }
+//    1 9 12 16 19 23 26 30
+//    1 9 12 16 19 23 26
+//    4 10 18 21 22 29 33
+    oneModel.red7 = @"111";
+    oneModel.Id = @(2);
+    oneModel.isNotLogin = YES;
+    NSLog(@"%@",[ssqMArr GW_ModelToJson:ssqMArr]);
+    SsqModel *curModel = [[SsqModel alloc] init];
+    curModel.red1 = @"1";
+    curModel.red2 = @"9";
+    curModel.red3 = @"12";
+    curModel.red4 = @"16";
+    curModel.red5 = @"23";
+    curModel.red6 = @"26";
+    
+    [self soreOneSsqM:curModel dataA:ssqMArr];
+
+}
+
+- (void)checkAllNum:(NSArray *)numArr{
+//    NSMutableArray *allSsq =
+    
+}
+
+- (void)soreOneSsqM:(SsqModel *)ssqM dataA:(NSArray *)dataA{
+    for (int y = 0; y<dataA.count; y++) {
+        [self dict:ssqM isEqualTo:dataA[y] addBlue:NO];
+    }
+}
+
+- (BOOL)dict:(SsqModel *)dict1 isEqualTo:(SsqModel *)dict2 addBlue:(BOOL)blue{
+    if ([dict1.red1 isEqualToString:dict2.red1]
+        && [dict1.red2 isEqualToString:dict2.red2]
+        && [dict1.red3 isEqualToString:dict2.red3]
+        && [dict1.red4 isEqualToString:dict2.red4]
+        && [dict1.red5 isEqualToString:dict2.red5]
+        && [dict1.red6 isEqualToString:dict2.red6]
+        ) {
+        if (blue && [dict1.blue isEqualToString:dict2.blue]) {
+            NSLog(@"相同model-date = %@ -- %@",dict1.date,dict2.date);
+            NSLog(@"red1 = %@ red2 = %@ red3 = %@ red4 = %@ red5 = %@ red6 =  %@",dict1.red1,dict1.red2,dict1.red3,dict1.red4,dict1.red5,dict1.red6);
+            NSLog(@"blue = %@",dict1.blue);
+            return YES;
+        }
+        NSLog(@"相同model-date = %@ -- %@",dict1.date,dict2.date);
+        NSLog(@"red1 = %@ red2 = %@ red3 = %@ red4 = %@ red5 = %@ red6 =  %@",dict1.red1,dict1.red2,dict1.red3,dict1.red4,dict1.red5,dict1.red6);
+        return YES;
+    }
+    return NO;
+}
+    
+
+
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"didReceiveMemoryWarning");
 }
 
 
