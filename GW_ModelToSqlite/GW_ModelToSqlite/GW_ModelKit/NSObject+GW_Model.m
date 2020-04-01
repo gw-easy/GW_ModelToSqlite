@@ -535,8 +535,6 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
 
                         if (sub_Class) {
                             ((void (*)(id, SEL, NSArray *))(void *) objc_msgSend)((id)modelObject, propertyType.setter, [self GW_ModelDataEngine:obj class:sub_Class changeDic:changeDic]);
-                        }else{
-                            ((void (*)(id, SEL, NSArray *))(void *) objc_msgSend)((id)modelObject, propertyType.setter, obj);
                         }
                         break;
                     case _Dictionary:
@@ -549,8 +547,6 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
                                 [subDic setValue:[self GW_ModelDataEngine:data class:sub_Class changeDic:changeDic] forKey:key];
                             }];
                             ((void (*)(id, SEL, NSDictionary *))(void *) objc_msgSend)((id)modelObject, propertyType.setter, subDic);
-                        }else{
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)modelObject, propertyType.setter, obj);
                         }
                         break;
                     case _String:
@@ -642,16 +638,8 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
         }
     }
     
-    if (!s_class) {
+    if (!s_class && changeDic) {
         s_class = [self checkClass:changeDic key:key];
-    }
-    
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_FirstUP];
-    }
-    
-    if (!s_class) {
-        s_class = [self getClassName_firstUP:key type:_GW_Class_Model];
     }
     
     if (!s_class) {
@@ -750,25 +738,6 @@ typedef NS_OPTIONS(NSUInteger, GW_TYPE) {
         }
     }
     return propertyType;
-}
-
-+ (Class)getClassName_firstUP:(NSString *)keyName type:(GW_Action)type{
-    NSString * first = [keyName substringToIndex:1];
-    NSString * other = [keyName substringFromIndex:1];
-    switch (type) {
-        case _GW_Class_FirstUP:
-            return NSClassFromString([NSString stringWithFormat:@"%@%@",[first uppercaseString],other]);
-            break;
-        case _GW_Class_AllUP:
-            
-            break;
-        case _GW_Class_Model:
-            return NSClassFromString([NSString stringWithFormat:@"%@%@Model",first,other]);
-            break;
-        default:
-            break;
-    }
-    return nil;
 }
 
 + (SEL)getSELName_FirstUP:(NSString *)keyName type:(GW_Action)type{

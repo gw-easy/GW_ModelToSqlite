@@ -35,9 +35,9 @@ return self; \
 
 @interface NSObject (GW_Model)<GW_Model_ChangeDelegate>
 
-#pragma mark json->model 使用注意事项，需要保证属性名称和json里的参数名,参数名类型（array/dictionary/model）一致，否则会解析成null，支持model多继承，对于array／dictionary里包含的model类型，需要将model类名和参数名保持一致，如果要自定义参数名，请用带changeDic参数的方法
+#pragma mark json->model 使用注意事项，需要保证属性名称和json里的参数名,参数名类型（array/dictionary/model）一致，否则会解析成null，支持model多继承，对于array／dictionary里包含的model类型，需要将model类名和参数名保持一致，如果要自定义参数名，请用带changeDic参数的方法或者使用代理GW_ModelDelegateReplacePropertyMapper方法，代理的优先级最高。
 
-//默认支持的array／dictionary中model类名，1.参数名=类名（首字母不区分大小写） 2.类名=参数名+Model 3.其他格式的类名（只针对array／dictionary），需要在changeDic中，添加@{"参数名":"类名",}
+//默认支持的array／dictionary中model类名，1.参数名=类名（首字母不区分大小写） 2.类名=参数名+Model （如果不需要请求手动去除） 3.其他格式的类名（只针对array／dictionary），需要在changeDic中或者代理中，添加@{"参数名":"类名",}
 
 /**
  无路径转换，一个命令转换任何格式的json
